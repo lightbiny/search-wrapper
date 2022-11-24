@@ -13,6 +13,8 @@ import org.springframework.context.annotation.Configuration;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 
+import lightbiny.search.constants.CacheConstant;
+
 @EnableCaching
 @Configuration
 public class CacheConfig {
@@ -35,7 +37,8 @@ public class CacheConfig {
     }
     
     public enum Caches {
-    	POPULAR_KEYWORD("popular_keyword", 5, 3000);
+    	POPULAR_KEYWORD(CacheConstant.CACHE_POPULAR_KEYWORD, 5, 1)
+    	;
     	
     	private String value;
     	private int ttl = 5;

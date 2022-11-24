@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
+import lightbiny.search.constants.CacheConstant;
 import lightbiny.search.domain.Keyword;
 import lightbiny.search.rest.dto.PopularKeywordDto;
 import lightbiny.search.rest.repository.KeywordRepository;
@@ -23,7 +24,7 @@ public class PopularKeywordServiceimpl implements PopularKeywordService {
 		this.keywordRepository = popularKeywordRepository;
 	}
 	
-	@Cacheable(value = "popular_keyword")
+	@Cacheable(value = CacheConstant.CACHE_POPULAR_KEYWORD)
 	@Override
 	public List<PopularKeywordDto> getPopularKeyword() {
 		Page<Keyword> result = keywordRepository.findAll(PageRequest.of(0, 10, Sort.by(Order.desc("count"), Order.desc("modifiedAt"))));
