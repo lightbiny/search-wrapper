@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.jsoup.Jsoup;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -57,6 +59,8 @@ public class SearchDto {
 		private String phone;
 		private String address;
 		private String roadAddress;
+		@JsonIgnore
+		private String key;
 		
 		@Builder
 		public Document(String name, String url, String category, String phone, String address, String roadAddress) {
@@ -66,11 +70,12 @@ public class SearchDto {
 			this.phone = phone;
 			this.address = address;
 			this.roadAddress = roadAddress;
+			this.key = name.replaceAll("\s", "") + "_" + address.replaceAll("\s", "");
 		}
 		
 		@Override
 		public int hashCode() {
-			return (this.name + "_" + this.address).hashCode();
+			return key.hashCode();
 		}
 		
 		@Override
@@ -80,7 +85,7 @@ public class SearchDto {
 			}
 			
 			if (o instanceof Document d) {
-				return this.getName().equals(d.getName()) && this.getAddress().equals(d.getAddress());
+				return this.getKey().equals(d.getKey());
 			}
 			
 			return false;
