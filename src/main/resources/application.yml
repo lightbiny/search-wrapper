@@ -27,8 +27,8 @@ my:
     default: kakao,naver 
     kakao:
       http-url: "https://dapi.kakao.com/v2/local/search/keyword.json"
-      api-key: "KakaoAK d8a0510d6b1b2634c9ab0636995d20c6"
+      api-key: 
     naver:
       http-url: "https://openapi.naver.com/v1/search/local.json"
-      client-id: "ARO5yoWrzrO0Y8E3TROf"
-      client-secret: "1wCpHU1ktj"
+      client-id: 
+      client-secret: 
